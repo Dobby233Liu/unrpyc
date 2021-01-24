@@ -1,14 +1,4 @@
-master: [![Build Status](https://travis-ci.org/CensoredUsername/unrpyc.svg?branch=master)](https://travis-ci.org/CensoredUsername/unrpyc)
-
-dev: [![Build Status](https://travis-ci.org/CensoredUsername/unrpyc.svg?branch=dev)](https://travis-ci.org/CensoredUsername/unrpyc)
-
-Unrpyc is a script to decompile Ren'Py (http://www.renpy.org/) compiled .rpyc
-script files. It will not extract files from .rpa archives. For that, use
-[rpatool](https://github.com/Shizmob/rpatool) or
-[UnRPA](https://github.com/Lattyware/unrpa).
-
-Thanks to recent changes, unrpyc no longer needs internal renpy structures to
-work.
+Not useful
 
 Usage options:
 
