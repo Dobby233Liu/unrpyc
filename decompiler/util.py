@@ -52,7 +52,7 @@ class DecompilerBase(object):
         """
         for line in lines:
             if line == '':
-                self.write('\n')
+                self.write('') # no?
             else:
                 self.indent()
                 self.write(line)
