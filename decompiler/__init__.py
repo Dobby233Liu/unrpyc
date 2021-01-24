@@ -502,7 +502,7 @@ class Decompiler(DecompilerBase):
         if ((not hasattr(ast, 'expression') or ast.expression is None) and self.parent is None and
             self.index + 1 == len(self.block) and self.index and
             ast.linenumber == self.block[self.index - 1].linenumber):
-            self.write("# return\n") # include that to complete the source but comment that out
+            self.write("\n# return (eof)\n") # include that to complete the source but comment that out
             return # nothing else to do
         else:
             self.write("return")
