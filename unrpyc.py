@@ -205,6 +205,8 @@ def sharelock(lock):
     global printlock
     printlock = lock
 
+cc_num = cpu_count()
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Decompile .rpyc/.rpymc files")
 
@@ -261,8 +263,7 @@ def parse_args():
     return parser.parse_args()
 
 def main(args=parse_args(), interactive=True):
-    # python27 unrpyc.py [-c] [-d] [--python-screens|--ast-screens|--no-screens] file [file ...]
-    cc_num = cpu_count()
+    # python -m unrpyc [-c] [-d] [--python-screens|--ast-screens|--no-screens] file [file ...]
 
     if args.write_translation_file and not args.clobber and path.exists(args.write_translation_file):
         # Fail early to avoid wasting time going through the files
