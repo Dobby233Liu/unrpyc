@@ -56,6 +56,11 @@ def decryptor(f):
     return f
 
 
+# Add game-specific custom extraction / decryption logic here
+
+# End of custom extraction/decryption logic
+
+
 @extractor
 def extract_slot_rpyc(f, slot):
     """
@@ -63,7 +68,7 @@ def extract_slot_rpyc(f, slot):
     """
     f.seek(0)
     data = f.read()
-    if data[:10] != "RENPY RPYC":
+    if data[:10] != b'RENPY RPC2':
         raise ValueError("Incorrect Header")
 
     position = 10
@@ -177,6 +182,7 @@ def extract_slot_zlibscan(f, slot):
 
     return chunks[slot - 1]
 
+
 @decryptor
 def decrypt_zlib(data, count):
     try:
@@ -224,13 +230,11 @@ def assert_is_normal_rpyc(f):
     If succesful, returns the uncompressed contents of the first storage slot.
     """
 
-    diagnosis = []
-
     f.seek(0)
     header = f.read(1024)
     f.seek(0)
 
-    if header_data[:10] != "RENPY RPC2":
+    if header[:10] != b'RENPY RPC2':
         # either legacy, or someone messed with the header
 
         # assuming legacy, see if this thing is a valid zlib blob
@@ -250,7 +254,7 @@ def assert_is_normal_rpyc(f):
             # 10 bytes header + 4 * 9 bytes content table
             return ValueError("File too short")
 
-        a,b,c,d,e,f,g,h,i = struct.unpack("<IIIIIIIII", raw_contents[header + 10 : header + 46])
+        a,b,c,d,e,f,g,h,i = struct.unpack("<IIIIIIIII", header[10: 46])
 
         # does the header format match default ren'py generated files?
         if not (a == 1 and b == 46 and d == 2 and (g, h, i) == (0, 0, 0) and b + c == e):
