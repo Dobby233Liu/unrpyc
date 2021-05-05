@@ -205,9 +205,7 @@ def sharelock(lock):
     global printlock
     printlock = lock
 
-def main():
-    # python27 unrpyc.py [-c] [-d] [--python-screens|--ast-screens|--no-screens] file [file ...]
-    cc_num = cpu_count()
+def parse_args():
     parser = argparse.ArgumentParser(description="Decompile .rpyc/.rpymc files")
 
     parser.add_argument('-c', '--clobber', dest='clobber', action='store_true',
@@ -260,11 +258,15 @@ def main():
     parser.add_argument('--try-harder', dest="try_harder", action="store_true",
                         help="Tries some workarounds against common obfuscation methods. This is a lot slower.")
 
-    args = parser.parse_args()
+    return parser.parse_args()
+
+def main(args=parse_args(), interactive=True):
+    # python27 unrpyc.py [-c] [-d] [--python-screens|--ast-screens|--no-screens] file [file ...]
+    cc_num = cpu_count()
 
     if args.write_translation_file and not args.clobber and path.exists(args.write_translation_file):
         # Fail early to avoid wasting time going through the files
-        print("Output translation file already exists. Pass --clobber to overwrite.")
+        print("Output translation file already exists.%s" % (" Pass --clobber to overwrite." if interactive else ""))
         return
 
     if args.translation_file:
