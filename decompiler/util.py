@@ -48,12 +48,10 @@ class DecompilerBase(object):
 
     def write_lines(self, lines):
         """
-        Write each line in lines to the file without writing whitespace-only lines
+        Write each line in lines to the file *without* writing whitespace-only lines
         """
         for line in lines:
-            if line == '':
-                self.write('\n')
-            else:
+            if line != '':
                 self.indent()
                 self.write(line)
 
