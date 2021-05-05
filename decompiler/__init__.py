@@ -118,7 +118,7 @@ class Decompiler(DecompilerBase):
         # if there's anything we wanted to write out but didn't yet, do it now
         for m in self.blank_line_queue:
             m(None)
-        self.write("\n# Decompiled by unrpyc: https://github.com/CensoredUsername/unrpyc\n")
+        # self.write("\n# Decompiled by unrpyc: https://github.com/CensoredUsername/unrpyc\n")
         assert not self.missing_init, "A required init, init label, or translate block was missing"
 
     def print_node(self, ast):
