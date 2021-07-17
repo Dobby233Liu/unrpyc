@@ -11,7 +11,7 @@ setup(
     long_description=readme(),
     url='https://github.com/CensoredUsername/unrpyc',
     py_modules=['unrpyc'],
-    packages=['decompiler'],
-    scripts=['unrpyc.py', 'deobfuscate.py'],
+    packages=['decompiler', 'deobfuscate'],
+    scripts=['unrpyc.py'],
     zip_safe=False,
 )
