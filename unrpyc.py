@@ -109,7 +109,7 @@ class_factory = magic.FakeClassFactory((PyExpr, PyCode, RevertableList, Revertab
 printlock = Lock()
 
 # needs class_factory
-import deobfuscate  # nopep8 # noqa 
+import .deobfuscate  # nopep8 # noqa 
 
 # API
 
