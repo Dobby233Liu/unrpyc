@@ -51,7 +51,9 @@ class DecompilerBase(object):
         Write each line in lines to the file *without* writing whitespace-only lines
         """
         for line in lines:
-            if line != '':
+            if line == '':
+                self.write('')
+            else:
                 self.indent()
                 self.write(line)
 
