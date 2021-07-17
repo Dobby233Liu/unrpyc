@@ -31,6 +31,7 @@ import zlib
 
 try:
     from multiprocessing import Pool, Lock, cpu_count
+    Lock()
 except ImportError:
     # Mock required support when multiprocessing is unavailable
     def cpu_count():
