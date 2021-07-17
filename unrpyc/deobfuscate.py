@@ -37,7 +37,7 @@ import zlib
 import struct
 import base64
 from collections import Counter
-from decompiler import magic
+from .decompiler import magic
 import unrpyc
 
 

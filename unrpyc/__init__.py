@@ -54,8 +54,8 @@ except ImportError:
             pass
 
 
-import decompiler
-from decompiler import magic, astdump, translate
+from . import decompiler
+from .decompiler import magic, astdump, translate
 
 # special definitions for special classes
 
@@ -266,8 +266,11 @@ def parse_args():
 
     return parser.parse_args()
 
-def main(args=parse_args(), interactive=True):
+def main(args=None, interactive=True):
     # python -m unrpyc [-c] [-d] [--python-screens|--ast-screens|--no-screens] file [file ...]
+
+    if args is None:
+        args = parse_args()
 
     if args.write_translation_file and not args.clobber and path.exists(args.write_translation_file):
         # Fail early to avoid wasting time going through the files
@@ -343,6 +346,3 @@ def main(args=parse_args(), interactive=True):
         print("Decompilation of %d file%s failed" % (bad, 's' if bad>1 else ''))
     else:
         print("Decompilation of %d file%s successful, but decompilation of %d file%s failed" % (good, 's' if good>1 else '', bad, 's' if bad>1 else ''))
-
-if __name__ == '__main__':
-    main()
