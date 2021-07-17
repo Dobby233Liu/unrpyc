@@ -1,35 +1,35 @@
-# Unrpyc, the Ren'py script decompiler.
+# Unrpyc: The Ren'Py script decompiler
 
 Unrpyc is a tool to decompile Ren'Py (http://www.renpy.org/) compiled .rpyc
-script files. It will not extract files from .rpa archives. For that, use
+script files. This branch is a modification of it for Python 3 and instructer.
+
+Note that this tool will not extract files from .rpa archives. For that, use
 [rpatool](https://github.com/Shizmob/rpatool) or
 [UnRPA](https://github.com/Lattyware/unrpa).
 
-
 ## Status
 
-master: [![Build Status](https://travis-ci.org/CensoredUsername/unrpyc.svg?branch=master)](https://travis-ci.org/CensoredUsername/unrpyc)
-
-dev: [![Build Status](https://travis-ci.org/CensoredUsername/unrpyc.svg?branch=dev)](https://travis-ci.org/CensoredUsername/unrpyc)
+TODO
 
 ## Usage
 
-This tool can either be ran as a command line tool, as a library, or injected into the game itself. It requires Python 2.7 to be installed to be used as a command line tool.
+This tool can either be ran as a command line tool, or as a library.
+It requires Python 3.
 
 ### Command line tool usage
 
 Depending on your system setup, you should use one of the following commands to run the tool:
 ```
-python unrpyc.py [options] script1 script2 ...
-python2 unrpyc.py [options] script1 script2 ...
-py -2 unrpyc.py [options] script1 script2 ...
-./unrpyc.py [options] script1 script2 ...
+python -m unrpyc.py [options] script1 script2 ...
+python3 -m unrpyc [options] script1 script2 ...
+py -3 -m unrpyc [options] script1 script2 ...
+unrpyc [options] script1 script2 ...
 ```
 
 Options:
 ```
-$ py -2 unrpyc.py --help
-usage: unrpyc.py [-h] [-c] [-d] [-p {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}]
+unrpyc --help
+usage: unrpyc [-h] [-c] [-d] [-p {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}]
                  [-t TRANSLATION_FILE] [-T WRITE_TRANSLATION_FILE]
                  [-l LANGUAGE] [--sl1-as-python] [--comparable] [--no-pyexpr]
                  [--tag-outside-block] [--init-offset] [--try-harder]
@@ -104,11 +104,7 @@ the same directory as the modules directory.
 
 ### Game injection
 
-The tool can be injected directly into a running game by placing either the
-`un.rpyc` file or the `bytecode.rpyb` file from the most recent release into
-the `game` directory inside a Ren'py game. When the game is then ran the tool
-will automatically extract and decompile all game script files into the `game`
-directory. The tool writes logs to the file `unrpyc.log.txt`.
+This branch removed un.rpyc, thus it is not supported.
 
 ### Library usage
 
@@ -117,7 +113,7 @@ unrpyc.decompile_rpyc(filename, ...) directly.
 
 ## Notes on support
 
-The Ren'py engine has changed a lot through the years. While this tool tries to
+The Ren'Py engine has changed a lot through the years. While this tool tries to
 support all available Ren'py versions since the creation of this tool, we do not
 actively test it against every engine release. Furthermore the engine does
 not have perfect backwards compatibility itself, so issues can occur if you try
@@ -126,7 +122,7 @@ to recent engine versions so if you encounter an issues with older games, please
 report it.
 
 Supported:
-* renpy version 6 and 7 (current)
+* Ren'Py version 6 and 7 (current)
 * Windows, OSX and Linux
 
 ## Issue reports
@@ -177,5 +173,3 @@ and it's trivial to figure out a way to obfuscate the file that blocks anything 
 supported right now. If you make a pull request with it we'll happily put it in mainline
 or a game-specific branch depending on how many games it affects, but we have little
 motivation ourselves to put time in this arms race.
-
-https://github.com/CensoredUsername/unrpyc
