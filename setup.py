@@ -5,7 +5,7 @@ def readme():
     with open('README.md') as f:
         return f.read()
 setup(
-    name='unrpyc_instructer',
+    name='unrpyc-instructer',
     version='1.0',
     description='Tool to decompile Ren\'Py compiled .rpyc script files (instructer fork)',
     long_description=readme(),
