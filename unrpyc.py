@@ -30,7 +30,12 @@ from operator import itemgetter
 import zlib
 
 try:
-    from multiprocessing import Pool, Lock, cpu_count
+    from multiprocessing import Pool, cpu_count
+    def ___safe_sandbox___():
+        from multiprocessing.synchronize import Lock
+        Lock()
+    ___safe_sandbox___()
+    from multiprocessing import Lock
     Lock()
 except ImportError:
     # Mock required support when multiprocessing is unavailable
